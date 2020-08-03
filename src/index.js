@@ -51,7 +51,7 @@ export default class Viewer extends Component {
       this.ctx = this.canvas.getContext('2d');
     }
 
-    const htmlImageElements = [];
+    const htmlImageElements = new Array(frames.length);
     frames.forEach((frame, index) => {
       preloadImage(frame, (img) => {
         this.setState({
@@ -69,7 +69,7 @@ export default class Viewer extends Component {
         }
 
         // ensure order is correct
-        htmlImageElements.splice(index, 0, img);
+        htmlImageElements[index] = img;
         if (htmlImageElements.length === frames.length) {
           this.setState({
             loading: false,
